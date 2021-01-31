@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MC_Capacity.Services;
+using MC_Capacity.Helper;
 
 namespace MC_Capacity
 {
@@ -21,44 +23,44 @@ namespace MC_Capacity
             InitializeComponent();
         }
 
-        private void GetInfo() 
+
+        private void btstart_Click(object sender, EventArgs e)
         {
-            DriveInfo[] allDrives = DriveInfo.GetDrives();
-            foreach (DriveInfo d in allDrives) 
+            Array driveInfo = DriveService.getInfo();
+            if (driveInfo.Length > 0)
             {
-                if (d.DriveType.ToString() == "Fixed") 
+                setInfo(driveInfo);               
+            }
+            else { 
+                //Set Warning message
+            }
+        }
+
+        private void setInfo(Array driveInfo) {
+            /*Show Table*/
+            DriveDatabaseHelper helper = new DriveDatabaseHelper();
+            Dictionary<string, object> machine = DriveService.getMachineInfo();
+            foreach (DriveInfo d in driveInfo)
+            {
+                if (d.DriveType.ToString() == "Fixed")
                 {
                     rtbresual.Text += Environment.NewLine + "Drive" + d.Name;
-                    if (d.DriveType.ToString() == "Fixed") 
+                    if (d.DriveType.ToString() == "Fixed")
                     {
-                        rtbresual.Text += Environment.NewLine + "Volum label" + d.VolumeLabel;
-                        rtbresual.Text += Environment.NewLine + "File System" + d.DriveFormat;
-                        rtbresual.Text += Environment.NewLine + "Year" + d.RootDirectory.Root.CreationTime.Year;
-                        rtbresual.Text += Environment.NewLine + "Availabel space to current used" + FormatBytes(d.AvailableFreeSpace) + "bytes";
-                        rtbresual.Text += Environment.NewLine + "Total size of drive" + FormatBytes(d.TotalSize) + "bytes";
-                        rtbresual.Text += Environment.NewLine + "Total available space" + FormatBytes(d.TotalFreeSpace) + "bytes";
-                        
+                        rtbresual.Text += Environment.NewLine + "Volum label : " + d.VolumeLabel;
+                        rtbresual.Text += Environment.NewLine + "File System : " + d.DriveFormat;
+                        rtbresual.Text += Environment.NewLine + "Year : " + d.RootDirectory.Root.CreationTime.Year;
+                        rtbresual.Text += Environment.NewLine + "Availabel space to current used : " + DriveService.convertByte(d.AvailableFreeSpace);
+                        rtbresual.Text += Environment.NewLine + "Total size of drive : " + DriveService.convertByte(d.TotalSize);
+                        rtbresual.Text += Environment.NewLine + "Total available space : " + DriveService.convertByte(d.TotalFreeSpace);
+
+                        //Insert Store Procedures
+                        String result = helper.insert(d, machine);
+                        rtbresual.Text += Environment.NewLine + "Result : " + result;
+                        rtbresual.Text += Environment.NewLine;
                     }
                 }
             }
         }
-
-        private static string FormatBytes(long bytes) 
-        {
-            string[] Suffix = {"B","KB","MB","GB","TB"};
-            int i;
-            double dblSByte = bytes; 
-            for (i = 0; i < Suffix.Length && bytes >= 1024; i++, bytes /= 1024) {
-                dblSByte = bytes / 1024.0;
-            }
-            return String.Format(dblSByte.ToString());
-        }
-
-        private void btstart_Click(object sender, EventArgs e)
-        {
-            //GetInfo();
-            
-        }
-
     }
 }
