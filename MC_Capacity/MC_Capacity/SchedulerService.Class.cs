@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MC_Capacity.Helper;
+using MC_Capacity.Services;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -29,6 +32,19 @@ namespace MC_Capacity
             var timer = new Timer(x =>
             {
                 task.Invoke();
+                Array driveInfo = DriveService.getInfo();
+                if (driveInfo.Length > 0)
+                {
+                    DriveDatabaseHelper helper = new DriveDatabaseHelper();
+                    Dictionary<string, object> machine = DriveService.getMachineInfo();
+                    foreach (DriveInfo d in driveInfo)
+                    {
+                        if (d.DriveType.ToString() == "Fixed")
+                        {
+                            String result = helper.insert(d, machine);
+                        }
+                    }
+                }                
             }, null, timeToGo, TimeSpan.FromHours(intervalInHour));
             timers.Add(timer);
         }
