@@ -23,7 +23,7 @@ namespace MC_Capacity.Services
             string type = null;
             for (i = 0; i < Suffix.Length && bytes >= 1024; i++, bytes /= 1024) {
                 dblSByte = bytes / 1024.0;
-                type = Suffix[i];
+                type = Suffix[i + 1];
             }
             return String.Format(dblSByte.ToString())+" "+type;
         }
