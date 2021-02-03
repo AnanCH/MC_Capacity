@@ -22,45 +22,73 @@ namespace MC_Capacity
         /// </summary>
         private void InitializeComponent()
         {
-            this.btstart = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.rtbresual = new System.Windows.Forms.RichTextBox();
+            this.scheduler = new System.Windows.Forms.Timer(this.components);
+            this.showtime = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // btstart
-            // 
-            this.btstart.Location = new System.Drawing.Point(141, 128);
-            this.btstart.Name = "btstart";
-            this.btstart.Size = new System.Drawing.Size(75, 23);
-            this.btstart.TabIndex = 0;
-            this.btstart.Text = "START";
-            this.btstart.UseVisualStyleBackColor = true;
-            this.btstart.Click += new System.EventHandler(this.btstart_Click);
             // 
             // rtbresual
             // 
-            this.rtbresual.Location = new System.Drawing.Point(44, 169);
+            this.rtbresual.Location = new System.Drawing.Point(32, 137);
+            this.rtbresual.Margin = new System.Windows.Forms.Padding(2);
             this.rtbresual.Name = "rtbresual";
-            this.rtbresual.Size = new System.Drawing.Size(288, 315);
+            this.rtbresual.Size = new System.Drawing.Size(329, 443);
             this.rtbresual.TabIndex = 1;
             this.rtbresual.Text = "";
             // 
+            // scheduler
+            // 
+            this.scheduler.Tick += new System.EventHandler(this.scheduler_Tick);
+            // 
+            // showtime
+            // 
+            this.showtime.AutoSize = true;
+            this.showtime.BackColor = System.Drawing.Color.Silver;
+            this.showtime.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showtime.Location = new System.Drawing.Point(41, 103);
+            this.showtime.Name = "showtime";
+            this.showtime.Size = new System.Drawing.Size(89, 21);
+            this.showtime.TabIndex = 3;
+            this.showtime.Text = "Show time";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.LightGray;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(98, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(200, 31);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Check Capacity";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(381, 509);
+            this.BackColor = System.Drawing.Color.LightGray;
+            this.ClientSize = new System.Drawing.Size(393, 637);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.showtime);
             this.Controls.Add(this.rtbresual);
-            this.Controls.Add(this.btstart);
+            this.ForeColor = System.Drawing.Color.DarkRed;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Check Capacity Machine";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btstart;
         private System.Windows.Forms.RichTextBox rtbresual;
+        private System.Windows.Forms.Timer scheduler;
+        private System.Windows.Forms.Label showtime;
+        private System.Windows.Forms.Label label1;
     }
 }
 

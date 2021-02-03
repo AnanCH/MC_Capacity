@@ -8,3 +8,5 @@ D:\VisualStudioProject\MC_Capacity\MC_Capacity\MC_Capacity\obj\Debug\MC_Capacity
 D:\VisualStudioProject\MC_Capacity\MC_Capacity\MC_Capacity\obj\Debug\MC_Capacity.csproj.CoreCompileInputs.cache
 D:\VisualStudioProject\MC_Capacity\MC_Capacity\MC_Capacity\obj\Debug\MC_Capacity.exe
 D:\VisualStudioProject\MC_Capacity\MC_Capacity\MC_Capacity\obj\Debug\MC_Capacity.pdb
+D:\VisualStudioProject\MC_Capacity\MC_Capacity\MC_Capacity\bin\Debug\ScheduleTimer.dll
+D:\VisualStudioProject\MC_Capacity\MC_Capacity\MC_Capacity\obj\Debug\MC_Capacity.csproj.CopyComplete

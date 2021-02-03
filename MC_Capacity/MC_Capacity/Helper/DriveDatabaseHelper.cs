@@ -23,14 +23,14 @@ namespace MC_Capacity.Helper
                 DataTable dt;
                 string strStored;
                 using (conn) {
-                    strStored = "INT_Capacity";
+                    strStored = "INT_Data";
                     cmd.Parameters.Add(new SqlParameter("@pName", machine["name"]));
                     cmd.Parameters.Add(new SqlParameter("@pType", machine["type"]));
                     cmd.Parameters.Add(new SqlParameter("@pLine", machine["line"]));
                     cmd.Parameters.Add(new SqlParameter("@pDrive", info.Name));
                     cmd.Parameters.Add(new SqlParameter("@pTotal", info.TotalSize));
-                    cmd.Parameters.Add(new SqlParameter("@pUsed", info.AvailableFreeSpace));
-                    cmd.Parameters.Add(new SqlParameter("@pFree_Space", info.TotalFreeSpace));
+                    cmd.Parameters.Add(new SqlParameter("@pUsed", info.TotalSize - info.AvailableFreeSpace));
+                    cmd.Parameters.Add(new SqlParameter("@pFree_Space", info.AvailableFreeSpace));
                     cmd.Parameters.Add(new SqlParameter("@pDisk_Year", (int)info.RootDirectory.Root.CreationTime.Year));
                     cmd.Connection = conn;
                     cmd.CommandText = strStored;
